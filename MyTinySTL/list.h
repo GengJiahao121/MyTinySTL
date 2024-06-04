@@ -39,12 +39,6 @@ namespace mystl
 template <typename T>
 class list
 {
-public:
-    template <typename L>
-    friend std::ostream &operator<<(std::ostream &os, const list<L> &pt); // 该函数是友元函数的声明
-
-    
-
 private:
     struct Node
     {
@@ -56,7 +50,7 @@ private:
             : data(value), next(nextNode), prev(prevNode){}  
 
         template <typename L>
-        friend std::ostream &operator<<(std::ostream &os, const list<L>::Node &pt); // 该函数是友元函数的声明 
+        friend std::ostream &operator<<(std::ostream &os, const list<T>::Node *pt);
     };
 
     Node *head;
@@ -75,43 +69,47 @@ public:
     }
     ~list() { clear(); }
 
-    void push_back(const T &value){
+// 迭代器 和 运算符重载友元函数
+public:
+    template <typename L>
+    friend std::ostream &operator<<(std::ostream &os, const list<L> &pt); // 该函数是友元函数的声明
 
-        Node *newNode = new Node(value, nullptr, tail);
-
-        if (tail)
-        {
-            tail->next = newNode;
-        }
-        else
-        {
-            head = newNode;
-        }
-
-        tail = newNode;
-        ++size;
-    }
-
-    void push_front(const T &value)
+    // 迭代器
+    struct Iterator
     {
+    public:
+        Iterator() : ptr(nullptr) {}
 
-        Node *newNode = new Node(value, head, nullptr);
+        Iterator(Node *node) : ptr(node) {}
 
-        if (head) 
-        {
-            head->prev = newNode;
-        }
-        else
-        {
-            tail = newNode;
-        }
+        bool operator!=(const Iterator &it) { return ptr != it.ptr; }
 
-        head = newNode;
-        ++size;
-    }
+        T &operator*() { return ptr->data; }
 
-    // 获取链表中节点的数量
-    size_t getSize() const { return size; }
+        // 重载 -> 运算符
+        T *operator->() { return &ptr->data; }
+
+        // 前置++
+        Iterator &operator++() { ptr = ptr->next; return *this; }
+
+        // 后置++
+        Iterator operator++(int) { Iterator temp = *this; ptr = ptr->next; return temp; }
+
+        // 前置--
+        Iterator &operator--() {ptr = ptr->prev; return *this; }
+
+        // 后置--
+        Iterator operator--(int) { Iterator temp = *this; ptr = ptr->prev; return temp; }
+
+    private:
+        Node *ptr;
+    };
+    
+    // 返回迭代器的开始位置
+    Iterator begin() { return Iterator(head); }
+
+    // 返回迭代器的结束位置
+    Iterator end() { return Iterator(nullptr); }
 
     // 访问链表中的元素
     T &operator[](size_t index)
@@ -149,6 +147,46 @@ public:
         // 返回节点中的数据
         return current->data;
     }
+
+// 常用方法
+public:
+    void push_back(const T &value){
+
+        Node *newNode = new Node(value, nullptr, tail);
+
+        if (tail)
+        {
+            tail->next = newNode;
+        }
+        else
+        {
+            head = newNode;
+        }
+
+        tail = newNode;
+        ++size;
+    }
+
+    void push_front(const T &value)
+    {
+
+        Node *newNode = new Node(value, head, nullptr);
+
+        if (head) 
+        {
+            head->prev = newNode;
+        }
+        else
+        {
+            tail = newNode;
+        }
+
+        head = newNode;
+        ++size;
+    }
+
+    // 获取链表中节点的数量
+    size_t getSize() const { return size; }
 
     // 删除链表末尾的元素
     void pop_back()
@@ -279,18 +317,6 @@ public:
         size = 0;
     }
 
-    // 使用迭代器遍历链表的开始位置
-    Node *begin() { return head; }
-
-    // 使用迭代器遍历链表的结束位置
-    Node *end() { return nullptr; }
-
-    // 使用迭代器遍历链表的开始位置（const版本）
-    const Node *begin() const { return head; }
-
-    // 使用迭代器遍历链表的结束位置（const版本）
-    const Node *end() const { return nullptr; }
-
     // 打印链表中的元素
     void printElements() const
     {
@@ -306,7 +332,7 @@ public:
 
 // 重载 << 运算符
 template <typename T>
-std::ostream &operator<<(std::ostream &os, const list<T> &pt)
+std::ostream &operator<<(std::ostream &os, const mystl::list<T> &pt)
 {
     for (typename list<T>::Node *current = pt.head; current;
          current = current->next)
@@ -317,14 +343,13 @@ std::ostream &operator<<(std::ostream &os, const list<T> &pt)
     return os;
 }
 
+// 模版函数
 // 重载 << 运算符
 template <typename T>
-std::ostream &operator<<(std::ostream &os, const typename list<T>::Node &pt)
-{
-    os << pt.data;
+std::ostream &operator<<(std::ostream &os, const typename mystl::list<T>::Node *pt){
+    os << pt->data;
     return os;
 }
-
 
 /*
 int main() {

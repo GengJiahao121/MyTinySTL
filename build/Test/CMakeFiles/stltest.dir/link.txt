@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -O0 -g -Wall -Wextra -Wno-sign-compare -std=c++11 -O3 -DNDEBUG -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/stltest.dir/test.cpp.o -o /Users/gjh/workspaces/vscode/C_C++/STL/bin/stltest
+/usr/bin/c++   -O0 -g -Wall -Wextra -Wno-sign-compare -Wno-unused-but-set-variable -Wno-array-bounds -std=c++11 -O3 -DNDEBUG  -rdynamic CMakeFiles/stltest.dir/test.cpp.o  -o ../../bin/stltest 

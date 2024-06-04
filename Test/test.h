@@ -534,6 +534,7 @@ EXPECT_CON_EQ(v1, v3)   ok
 #define PASSED    std::cout << "[ PASSED ]\n"
 
 // 遍历输出容器
+// container 为容器，且必须重载了 << 运算符
 #define COUT(container) do {                             \
   std::string con_name = #container;                     \
   std::cout << " " << con_name << " :";                  \
