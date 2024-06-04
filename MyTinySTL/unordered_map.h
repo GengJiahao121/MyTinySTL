@@ -1,5 +1,10 @@
+#ifndef MYTINYSTL_UNORDERED_MAP_H
+#define MYTINYSTL_UNORDERED_MAP_H
+
 #include "4. hashTable.cpp" // 之前实现的哈希表
 #include <cstddef>
+
+namespace mystl {
 
 template <typename Key, typename Value> class Unordered_map {
 private:
@@ -35,6 +40,7 @@ public:
     }
 };
 
+/*
 int main() {
     // 创建一个 Unordered_map，键和值都是 std::string 类型
     Unordered_map<std::string, std::string> map;
@@ -77,3 +83,8 @@ int main() {
 
     return 0;
 }
+*/
+
+}
+
+#endif // MYTINYSTL_UNORDERED_MAP_H

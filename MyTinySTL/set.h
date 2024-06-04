@@ -1,4 +1,10 @@
-#include "5. RedBlackTree.cpp"
+#ifndef MYTINYSTL_SET_H
+#define MYTINYSTL_SET_H
+
+#include "RedBlackTree.h"
+
+namespace mystl
+{
 
 template <typename Key>
 class Set {
@@ -23,6 +29,7 @@ private:
     RedBlackTree<Key, Key> rbTree;
 };
 
+/*
 int main() {
   Set<int> mySet;
 
@@ -55,6 +62,11 @@ int main() {
 
   return 0;
 }
+*/
+
+}
+
+#endif // MYTINYSTL_SET_H
 
 /*
 1. std::set 的迭代器是什么类型？

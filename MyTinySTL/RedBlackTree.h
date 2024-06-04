@@ -1,6 +1,11 @@
+#ifndef MYTINGYSTL_REDBLACKTREE_H
+#define MYTINGYSTL_REDBLACKTREE_H
+
 #include <iostream>
 #include <sstream>
 #include <string>
+
+namespace mystl{
 
 enum class Color {RED, BLACK};
 
@@ -679,3 +684,7 @@ int main(){
     return 0;
 }
 */
+
+}
+
+#endif // MYTINGYSTL_REDBLACKTREE_H

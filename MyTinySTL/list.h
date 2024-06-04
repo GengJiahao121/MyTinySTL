@@ -1,3 +1,6 @@
+#ifndef MYTINYSTL_LIST_H
+#define MYTINYSTL_LIST_H
+
 #pragma once // 用于防止头文件被重复包含
 
 #include <iostream> // std::cin, std::cout, std::cerr, std::clog, ...
@@ -7,6 +10,11 @@
 #include <string> // std::string::size(), std::string::substr(), std::to_string
 #include <initializer_list> // for std::initializer_list
 
+
+namespace mystl
+{
+
+// 定义一个链表类
 template <typename T>
 class List
 {
@@ -283,6 +291,7 @@ std::ostream &operator<<(std::ostream &os, const List<T> &pt)
     return os;
 }
 
+/*
 int main() {
 
     // 使用参数列表初始化列表
@@ -359,3 +368,8 @@ int main() {
     }
     return 0;
 }
+*/
+
+} // namespace mystl
+
+#endif // MYTINYSTL_LIST_H

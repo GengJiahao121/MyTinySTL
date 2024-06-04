@@ -1,7 +1,12 @@
-#include "5. RedBlackTree.cpp"
+#ifndef MYTINYSTL_MAP_H
+#define MYTINYSTL_MAP_H
+
+#include "RedBlackTree.h"
 
 #include <iostream>
 #include <utility>
+
+namespace mystl{
 
 template <typename Key, typename Value>
 class Map{
@@ -46,6 +51,7 @@ private:
     RedBlackTree<Key, Value> rbTree;
 };
 
+/*
 // main函数
 int main() {
     Map<int, std::string> map;
@@ -89,6 +95,11 @@ int main() {
     std::cout << "键4对应的值: " << map[4] << '\n';
     return 0;
 }
+*/
+
+}
+
+#endif // MYTINYSTL_MAP_H
 
 /*
 1. std::map和std::unordered_map有什么区别？
@@ -142,3 +153,4 @@ insert方法用于将已经构造好的元素插入到map中。如果提供了�
 
 emplace更高效，因为它直接在容器内部构造元素，减少了不必要的复制或移动操作。然而，选择使用emplace还是insert取决于具体情况，有时为了代码的清晰可读，使用insert可能更合适。
 */
+

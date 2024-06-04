@@ -1,8 +1,13 @@
+#ifndef MYTINGYSTL_DEQUE_H
+#define MYTINGYSTL_DEQUE_H
+
 #include <iostream>
 #include <stdexcept>
 #include <algorithm>
 #include <sstream>
 #include <string>
+
+namespace mystl{
 
 template <typename T>
 class Deque
@@ -134,6 +139,7 @@ private:
     
 };
 
+/*
 int main() {
         // 创建一个 Deque 对象
     Deque<int> myDeque;
@@ -198,3 +204,8 @@ int main() {
     }
     return 0;
 }
+*/
+
+}
+
+#endif // MYTINGYSTL_DEQUE_H

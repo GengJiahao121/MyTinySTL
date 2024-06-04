@@ -1,3 +1,6 @@
+#ifndef MYTINYSTL_HASHTABLE_H
+#define MYTINYSTL_HASHTABLE_H
+
 #include <algorithm>
 #include <cstddef>
 #include <functional>
@@ -8,7 +11,9 @@
 #include <string>
 #include <list>
 
-template <typename Key, typename Value, typename Hash = std::hash<Key>>
+namespace mystl{
+
+template <typename Key, typename Value, typename Hash = std::hash<Key> >
 class HashTable
 {
     class HashNode {
@@ -73,6 +78,9 @@ private:
     }
 
 public:
+
+    HashTable() {}
+
     HashTable(ssize_t size = 10, const Hash &hashFunc = Hash())
         : buckets(size), hashFunction(hashFunc), tableSize(size), numElements(0) {
     }
@@ -206,3 +214,7 @@ int main() {
 }
 
 */
+
+}
+
+#endif //MYTINYSTL_HASHTABLE_H

@@ -1,5 +1,10 @@
-#include "4. hashTable.cpp"
+#ifndef MYTINYSTL_UNORDERED_SET_H
+#define MYTINYSTL_UNORDERED_SET_H
+
+#include "hashTable.h"
 #include <cstddef>
+
+namespace mystl{
 
 template <typename Key>
 class Unordered_set {
@@ -24,6 +29,8 @@ public:
 private:
     HashTable<Key, Key> hashtable; 
 };
+
+/*
 int main() {
 
     // 创建一个整数类型的 Unordered_set 集合
@@ -73,6 +80,11 @@ int main() {
 
     return 0;
 }
+*/
+
+}
+
+#endif // MYTINYSTL_UNORDERED_SET_H
 
 /*
 1. std::unordered_set 和 std::set 有什么区别？

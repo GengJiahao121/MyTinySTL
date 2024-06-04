@@ -1,11 +1,16 @@
+#ifndef MYTINYSTL_VECTOR_H
+#define MYTINYSTL_VECTOR_H
+
 #include <stdexcept>
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <algorithm>
 
+namespace mystl{
+
 template <typename T>
-class Vector{
+class vector{
 private:
     T *elements; // 指向动态数组的指针
     size_t capacity; // 数组的容量
@@ -13,24 +18,24 @@ private:
 
 public:
     // 构造函数
-    Vector() : elements(nullptr), capacity(0), size(0) {
-
+    vector() : elements(nullptr), capacity(0), size(0) {
+   
     }
 
     // 析构函数
-    ~Vector(){
+    ~vector(){
         delete[] elements;
     }
 
     // 拷贝构造函数
-    Vector(const Vector &other) : capacity(other.capacity), size(other.size){
+    vector(const vector &other) : capacity(other.capacity), size(other.size){
         elements = new T[capacity];
         // C++ 标准库中的一个算法
         std::copy(other.elements, other.elements + size, elements);
     }
 
     // 拷贝赋值操作符
-    Vector &operator=(const Vector &other){
+    vector &operator=(const vector &other){
         if (this != &other) {
             delete[] elements;
             capacity = other.capacity;
@@ -165,10 +170,11 @@ private:
 
 };
 
+/*
 int main()
 {
-    // 创建一个 Vector 对象
-    Vector<int> myVector;
+    // 创建一个 vector 对象
+    vector<int> myvector;
 
     int N;
     std::cin >> N;
@@ -189,44 +195,44 @@ int main()
         {
             int value;
             iss >> value; // 继续使用 >> 运算符从 iss 中提取int类型的数据
-            myVector.push_back(value);
+            myvector.push_back(value);
         }
         else if (command == "print")
         {
-            if (myVector.getSize() == 0) {
+            if (myvector.getSize() == 0) {
                 std::cout << "empty" << std::endl;
                 continue;
             }
-            myVector.printElements();
+            myvector.printElements();
         }
         else if (command == "size")
         {
-            std::cout << myVector.getSize() << std::endl;
+            std::cout << myvector.getSize() << std::endl;
         }
         else if (command == "get")
         {
             int index;
             iss >> index;
-            std::cout << myVector[index] << std::endl;
+            std::cout << myvector[index] << std::endl;
         }
         else if (command == "insert")
         {
             int index, value;
             iss >> index >> value;
-            myVector.insert(index, value);
+            myvector.insert(index, value);
         }
         else if (command == "pop")
         {
-            myVector.pop_back();
+            myvector.pop_back();
         }
         else if (command == "iterator")
         {
-            if (myVector.getSize() == 0)
+            if (myvector.getSize() == 0)
             {
                 std::cout << "empty" << std::endl;
                 continue;
             }
-            for (auto it = myVector.begin(); it != myVector.end(); ++it)
+            for (auto it = myvector.begin(); it != myvector.end(); ++it)
             {
                 std::cout << *it << " ";
             }
@@ -234,12 +240,12 @@ int main()
         }
         else if (command == "foreach")
         {
-            if (myVector.getSize() == 0)
+            if (myvector.getSize() == 0)
             {
                 std::cout << "empty" << std::endl;
                 continue;
             }
-            for (const auto &element : myVector)
+            for (const auto &element : myvector)
             {
                 std::cout << element << " ";
             }
@@ -247,8 +253,13 @@ int main()
         }
         else if (command == "clear")
         {
-            myVector.clear();
+            myvector.clear();
         }
     }
     return 0;
 }
+*/
+
+}
+
+#endif // MYTINYSTL_VECTOR_H
