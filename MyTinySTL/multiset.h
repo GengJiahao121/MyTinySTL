@@ -1,4 +1,7 @@
-#include "5. RedBlackTree.cpp"
+#ifndef MYTINYSTL_MULTISET_H_
+#define MYTINYSTL_MULTISET_H_
+
+#include "RedBlackTree.h"
 #include <cstddef>
 #include <stdexcept>
 
@@ -60,6 +63,7 @@ private:
 
 };
 
+/*
 int main() {
     MultiSet<int> mySet; // Create an Unordered_set for integers
 
@@ -90,6 +94,9 @@ int main() {
 
     return 0;
 }
+*/
+
+#endif // MYTINYSTL_MULTISET_H_
 
 /*
 1. 解释multiset和Set的区别是什么？ multiset和Set都是关联容器，它们可以存储元素，并能够快速检索。

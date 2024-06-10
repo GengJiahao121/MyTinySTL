@@ -7,7 +7,130 @@
 #include <sstream>
 #include <string>
 
+// 迭代器
+#include "iterator.h"
+
 namespace mystl{
+
+template <class T>
+class DequeIterator : public iterator<random_access_iterator_tag, T>
+{
+public:
+    typedef T value_type;
+    typedef T* pointer;
+    typedef T& reference;
+    typedef ptrdiff_t difference_type;
+
+    typedef DequeIterator<T> self;
+
+    // 迭代器的成员变量
+    T *elements; // 指向deque的数组
+    size_t cur; // 当前指向的元素
+    size_t first ; // 当前所指缓冲区的头
+    size_t last; // 当前所指缓冲区的尾
+    size_t capacity; // 缓冲区大小
+
+    // 构造函数
+    DequeIterator() : elements(nullptr), cur(0), first(0), last(0), capacity(0) {} 
+    DequeIterator(T* elements, size_t cur, size_t first, size_t last, size_t capacity) : elements(elements), cur(cur), first(first), last(last), capacity(capacity) {}
+    DequeIterator(const DequeIterator& other) : elements(other.elements), cur(other.cur), first(other.first), last(other.last), capacity(other.capacity) {}
+
+    friend std::ostream& operator<<(std::ostream& os, const self& it) {
+        os << *it;
+        return os;
+    }
+
+    // 解引用
+    reference operator*() const {
+        return elements[cur]; // 如果是自定义数据类型需要实现[]运算符
+    }
+    
+    // 重载前置++运算符
+    self& operator++() {
+        cur = (cur + 1) % capacity; 
+        return *this;
+    }
+
+    // 重载后置++运算符
+    self operator++(int) {
+        self temp = *this;
+        ++*this;
+        return temp;
+    }
+
+    // 重载前置--运算符
+    self& operator--() {
+        // 计算新的位置
+        // 分情况讨论
+        if (cur == first) {
+            cur = last;
+        }
+        --cur;
+        return *this;
+    }
+
+    // 重载后置--运算符
+    self operator--(int) {
+        self temp = *this;
+        --*this;
+        return temp;
+    }
+
+    // 重载+=运算符
+    self& operator+=(difference_type n) {
+        // 计算新的位置
+        // 分情况讨论
+        size_t data_size = getDataSize();
+        // 1. first > last
+        if ( first > last ) {
+            size_t new_n = n % data_size;
+            size_t new_cur = (cur + new_n) % capacity;
+            if (new_cur >= last) {
+                new_cur = first + (new_cur - last);
+            }
+            cur = new_cur;
+        }
+        // 2. first < last
+        else {
+            size_t new_n = n % data_size; // 防止n > data_size
+            size_t new_cur = (cur + new_n) % data_size; // 计算新的cur相对于first的偏移量
+            new_cur = new_cur + first; // 计算新的cur
+            cur = new_cur;
+        }
+    }
+
+    // 重载+运算符
+    self operator+(difference_type n) {
+        return operator+=(n);
+    }
+
+    // 重载-=运算符
+
+    // 重载 == 运算符   
+    bool operator==(const self& other) const {
+        return cur == other.cur;
+    }
+
+    // 重载 != 运算符
+    bool operator!=(const self& other) const {
+        return !(*this == other);
+    }
+
+
+
+
+private:
+    // 返回缓冲区大小
+    size_t getDataSize() const {
+        if (first > last) {
+            return capacity - (first - last);
+        } else {
+            return last - first;
+        }
+    }
+    
+};
+
 
 template <typename T>
 class Deque
@@ -20,6 +143,14 @@ private:
     size_t size;
 
 public:
+    typedef DequeIterator<T> iterator;
+
+    iterator begin() { return iterator(elements, frontIndex, frontIndex, backIndex, capacity); }
+
+    iterator end() { return iterator(elements, backIndex, frontIndex, backIndex, capacity); }
+
+public:
+
     // 构造函数
     Deque() : elements(nullptr), capacity(0), frontIndex(0), backIndex(0), size(0) {}
 
@@ -53,16 +184,16 @@ public:
             resize();
         }
 
-        // 在当前后端位置插入元素
+        // 在后端位置插入元素
         elements[backIndex] = value;
-
-        // 计算新的后端索引
+        // 更新backIndex
         backIndex = (backIndex + 1) % capacity;
 
         // 增加deque的元素数量
         ++size;
     }
 
+    // 前端出队
     void pop_front(){
         if (size == 0) {
             throw std::out_of_range("Deque is empty");
@@ -73,6 +204,7 @@ public:
         --size;
     }
 
+    // 后端出队
     void pop_back(){
         if (size == 0) {
             throw std::out_of_range("Deque is empty");
@@ -84,6 +216,7 @@ public:
         --size;
     }
 
+    // [] 运算符重载
     T &operator[](int index){
         if (index < 0 || index >= size) {
             throw std::out_of_range("Index out of range");
@@ -116,7 +249,7 @@ public:
 
 private:
     void resize(){
-       size_t newCapacity = (capacity == 0) ? 1 : capacity * 2;
+        size_t newCapacity = (capacity == 0) ? 1 : capacity * 2;
 
         // 创建新的数组
         T* newElements = new T[newCapacity];
@@ -131,7 +264,7 @@ private:
         delete[] elements;
 
         // 更新成员变量
-        elements = newElements;
+        elements = newElements; // 指向新数组
         capacity = newCapacity;
         frontIndex = 0;
         backIndex = size;

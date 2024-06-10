@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/STL
+CMAKE_SOURCE_DIR = /root/MyTinySTL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/STL/build
+CMAKE_BINARY_DIR = /root/MyTinySTL/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -92,14 +92,14 @@ Test/clean: Test/CMakeFiles/stltest.dir/clean
 Test/CMakeFiles/stltest.dir/all:
 	$(MAKE) -f Test/CMakeFiles/stltest.dir/build.make Test/CMakeFiles/stltest.dir/depend
 	$(MAKE) -f Test/CMakeFiles/stltest.dir/build.make Test/CMakeFiles/stltest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/STL/build/CMakeFiles --progress-num=1,2 "Built target stltest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/MyTinySTL/build/CMakeFiles --progress-num=1,2 "Built target stltest"
 .PHONY : Test/CMakeFiles/stltest.dir/all
 
 # Build rule for subdir invocation for target.
 Test/CMakeFiles/stltest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/STL/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/MyTinySTL/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 Test/CMakeFiles/stltest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/STL/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/MyTinySTL/build/CMakeFiles 0
 .PHONY : Test/CMakeFiles/stltest.dir/rule
 
 # Convenience name for target.

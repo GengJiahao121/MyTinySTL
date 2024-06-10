@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/root/STL/MyTinySTL/list.h
+/root/MyTinySTL/MyTinySTL/deque.h
 iostream
 -
 stdexcept
@@ -16,11 +16,29 @@ algorithm
 sstream
 -
 string
+-
+iterator.h
+/root/MyTinySTL/MyTinySTL/iterator.h
+
+/root/MyTinySTL/MyTinySTL/iterator.h
+cstddef
+-
+type_traits.h
+/root/MyTinySTL/MyTinySTL/type_traits.h
+
+/root/MyTinySTL/MyTinySTL/list.h
+iostream
+-
+stdexcept
 -
 initializer_list
 -
+iterator.h
+/root/MyTinySTL/MyTinySTL/iterator.h
 
-/root/STL/MyTinySTL/vector.h
+/root/MyTinySTL/MyTinySTL/type_traits.h
+
+/root/MyTinySTL/MyTinySTL/vector.h
 stdexcept
 -
 iostream
@@ -32,9 +50,9 @@ sstream
 algorithm
 -
 
-/root/STL/Test/Lib/redbud/io/color.h
+/root/MyTinySTL/Test/Lib/redbud/io/color.h
 ../platform.h
-/root/STL/Test/Lib/redbud/platform.h
+/root/MyTinySTL/Test/Lib/redbud/platform.h
 unistd.h
 -
 cstring
@@ -50,25 +68,39 @@ iostream
 type_traits
 -
 
-/root/STL/Test/Lib/redbud/platform.h
+/root/MyTinySTL/Test/Lib/redbud/platform.h
 
-/root/STL/Test/list_test.h
+/root/MyTinySTL/Test/deque_test.h
+../MyTinySTL/deque.h
+/root/MyTinySTL/MyTinySTL/deque.h
+iostream
+-
+deque
+-
+test.h
+/root/MyTinySTL/Test/test.h
+typeinfo
+-
+
+/root/MyTinySTL/Test/list_test.h
 list
 -
 ../MyTinySTL/list.h
-/root/STL/MyTinySTL/list.h
+/root/MyTinySTL/MyTinySTL/list.h
 test.h
-/root/STL/Test/test.h
+/root/MyTinySTL/Test/test.h
 
-/root/STL/Test/test.cpp
+/root/MyTinySTL/Test/test.cpp
 stdlib.h
 -
 vector_test.h
-/root/STL/Test/vector_test.h
+/root/MyTinySTL/Test/vector_test.h
 list_test.h
-/root/STL/Test/list_test.h
+/root/MyTinySTL/Test/list_test.h
+deque_test.h
+/root/MyTinySTL/Test/deque_test.h
 
-/root/STL/Test/test.h
+/root/MyTinySTL/Test/test.h
 ctime
 -
 cstring
@@ -86,13 +118,13 @@ sstream
 vector
 -
 Lib/redbud/io/color.h
-/root/STL/Test/Lib/redbud/io/color.h
+/root/MyTinySTL/Test/Lib/redbud/io/color.h
 
-/root/STL/Test/vector_test.h
+/root/MyTinySTL/Test/vector_test.h
 vector
 -
 ../MyTinySTL/vector.h
-/root/STL/MyTinySTL/vector.h
+/root/MyTinySTL/MyTinySTL/vector.h
 test.h
-/root/STL/Test/test.h
+/root/MyTinySTL/Test/test.h
 

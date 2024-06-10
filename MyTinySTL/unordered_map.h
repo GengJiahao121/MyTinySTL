@@ -1,7 +1,7 @@
 #ifndef MYTINYSTL_UNORDERED_MAP_H
 #define MYTINYSTL_UNORDERED_MAP_H
 
-#include "4. hashTable.cpp" // 之前实现的哈希表
+#include "hashTable.h" // 之前实现的哈希表
 #include <cstddef>
 
 namespace mystl {
